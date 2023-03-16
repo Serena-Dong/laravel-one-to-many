@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Type;
 use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,8 +18,10 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+        $max = Type::count();
         for ($i = 0; $i < 6; $i++) {
             $project = new Project();
+            $project->type_id = $faker->numberBetween(1, $max);
             $project->title = $faker->words(3, true);
             $project->project_url = $faker->url();
             // $project->image_url = $faker->imageUrl(150, 150);
