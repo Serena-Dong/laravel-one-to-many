@@ -5,8 +5,8 @@
 @section('content')
 <div class="container">
     <div class="d-flex align-items-center justify-content-between">
-        <h2 class="fs-4 text-secondary my-4">
-            {{ __('My Projects') }}
+        <h2 class=" my-4">
+            {{ __('Projects') }}
         </h2>
         <div class="button">
             <a class="btn btn-primary" href="{{route('admin.projects.create')}}"><i class="fa-solid fa-plus"></i> Add</a>
@@ -32,7 +32,13 @@
                       <tr>
                         <th class="align-middle" scope="row"><a style="text-transform: uppercase;" href="{{route('admin.projects.show', $project->id)}}">{{$project->title}}</a></th>
                         <td class="align-middle"><input type="text" disabled value='{{Str::slug(old('title', $project->title), '-')}}'></td>
-                        <td class="align-middle">{{$project->is_published ? 'Yes' : 'No'}}</td>
+                        <td class="align-middle text-center">
+                          @if ($project->is_published)
+                          <i class="fa-solid fa-toggle-on text-success"></i>
+                          @else
+                          <i class="fa-solid fa-toggle-off text-danger"></i>                       
+                          @endif
+                        </td>
                         <td class="align-middle">{{$project->created_at}}</td>
                         <td class="align-middle">{{$project->updated_at}}</td>
                         <td class="align-middle d-flex">
