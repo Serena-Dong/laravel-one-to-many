@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex align-items-center justify-content-between">
-        <h2 class=" my-4">
+        <h2 class="my-4">
             {{ __('Projects') }}
         </h2>
         <div class="button">
@@ -21,6 +21,7 @@
                       <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Slug</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Visible</th>
                         <th scope="col">Created</th>
                         <th scope="col">Updated</th>
@@ -32,11 +33,12 @@
                       <tr>
                         <th class="align-middle" scope="row"><a style="text-transform: uppercase;" href="{{route('admin.projects.show', $project->id)}}">{{$project->title}}</a></th>
                         <td class="align-middle"><input type="text" disabled value='{{Str::slug(old('title', $project->title), '-')}}'></td>
+                        <td class="align-middle text-center text-white"><span id="label" style="background-color: {{$project->type->color}}">{{$project->type?->label}}</span></td>
                         <td class="align-middle text-center">
                           @if ($project->is_published)
-                          <i class="fa-solid fa-toggle-on text-success"></i>
+                          <i class="fa-solid fa-toggle-on text-success fs-2"></i>
                           @else
-                          <i class="fa-solid fa-toggle-off text-danger"></i>                       
+                          <i class="fa-solid fa-toggle-off text-danger fs-2"></i>                       
                           @endif
                         </td>
                         <td class="align-middle">{{$project->created_at}}</td>
