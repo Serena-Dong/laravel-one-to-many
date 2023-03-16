@@ -41,6 +41,13 @@
                         <img id="image_preview" class="img-fluid" src="{{ $project['image_url'] ? asset('storage/'.$project['image_url']) : 'https://marcolanci.it/utils/placeholder.jpg'}}" alt="">
                     </div>
                     <div class="mb-3 col-6 px-5">
+                        <label class="text-start mb-2" for="type_id">Type</label>
+                        <select class="form-control mb-3" name="type_id" id="type_id">
+                            <option value="">No type</option>
+                            @foreach ($types as $type)
+                                <option @if(old('type_id', $project->type?->id) == $type->id) selected @endif value="{{$type->id}}">{{$type->label}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
